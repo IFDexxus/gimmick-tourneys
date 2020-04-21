@@ -1,4 +1,4 @@
--- Restricted Field
+-- Pendulum Nullification
 local s,id=GetID()
 function s.initial_effect(c)
 	--Activate
@@ -33,11 +33,14 @@ function s.flipop(e,tp,eg,ep,ev,re,r,rp)
     Duel.Hint(HINT_SKILL_FLIP,0,id|(1<<32))
     Duel.Hint(HINT_CARD,0,id)
     local c=e:GetHandler()
-   --Ground Collapse
+    --Ground Collapse
     --disable field
-	local e2=Effect.CreateEffect(e:GetHandler())
+    local e2=Effect.CreateEffect(e:GetHandler())
     e2:SetType(EFFECT_TYPE_FIELD)
     e2:SetCode(EFFECT_DISABLE_FIELD)
-    e2:SetValue(0xFBFBFBFB)
+    e2:SetOperation(s.disop)
     Duel.RegisterEffect(e2,tp)
+end
+function s.disop(e,tp)
+    return 0xFBFB
 end
