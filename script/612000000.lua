@@ -42,5 +42,5 @@ function s.flipop(e,tp,eg,ep,ev,re,r,rp)
     Duel.RegisterEffect(e2,tp)
 end
 function s.disop(e,tp)
-    return 0xFBFB
+    return Duel.IsDuelType(DUEL_SEPARATE_PZONE) and 0xFBFB or 0xFBFB
 end
